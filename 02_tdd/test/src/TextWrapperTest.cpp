@@ -40,3 +40,10 @@ TEST(TextWrapper, TextWrap3){
     wrapper.getText("ab");
     EXPECT_EQ("a\nb", wrapper.wrapText());
 }
+
+TEST(TextWrapper, TextWrap4){
+    auto wrapper = TextWrapper{};
+    wrapper.setColumnsNo(1);
+    wrapper.getText("abc");
+    EXPECT_EQ("a\nb\nc", wrapper.wrapText());
+}
