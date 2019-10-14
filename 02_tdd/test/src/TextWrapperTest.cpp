@@ -14,3 +14,8 @@ TEST(TextWrapper, ColumnsSetter){
     auto wrapper = TextWrapper{};
     EXPECT_EQ(4, wrapper.setColumnsNo(4));
 }
+
+TEST(TextWrapper, TextGetter){
+    auto wrapper = TextWrapper{};
+    EXPECT_EQ("ab", wrapper.getText("ab"));
+}
