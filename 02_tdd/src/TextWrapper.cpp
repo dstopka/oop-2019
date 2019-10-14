@@ -15,9 +15,13 @@ std::string TextWrapper::getText(std::string str){
 }
 
 std::string TextWrapper::wrapText() {
-    if(text.length() > columnsNo)
+    if(text.size() > columnsNo)
     {
-
+        for(int i = columnsNo; i < text.size(); i += columnsNo)
+        {
+            text.insert(i++, "\n");
+        }
+        return text;
     }
     else
         return text;
