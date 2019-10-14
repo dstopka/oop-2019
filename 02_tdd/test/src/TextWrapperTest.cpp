@@ -20,9 +20,16 @@ TEST(TextWrapper, TextGetter){
     EXPECT_EQ("ab", wrapper.getText("ab"));
 }
 
-TEST(TextWrapper, TextWrap){
+TEST(TextWrapper, TextWrap1){
     auto wrapper = TextWrapper{};
-    wrapper.setColumnsNo(10);
+    wrapper.setColumnsNo(1);
     wrapper.getText("");
     EXPECT_EQ("", wrapper.wrapText());
+}
+
+TEST(TextWrapper, TextWrap2){
+    auto wrapper = TextWrapper{};
+    wrapper.setColumnsNo(1);
+    wrapper.getText("a");
+    EXPECT_EQ("a", wrapper.wrapText());
 }
