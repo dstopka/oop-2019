@@ -1,11 +1,5 @@
 #include "TestIncludes.h"
-
-class TextWrapper{
-public:
-    int columns() const {
-        return 10;
-    }
-};
+#include "TextWrapper.h"
 
 TEST(TextWrapper, CreateInstance) {
     auto wrapper = TextWrapper{};
