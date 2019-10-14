@@ -12,4 +12,5 @@ public:
     int columns() const;
     int setColumnsNo(int i);
     std::string getText(std::string str);
+    std::string wrapText();
 };

@@ -13,3 +13,12 @@ std::string TextWrapper::getText(std::string str){
     text = str;
     return text;
 }
+
+std::string TextWrapper::wrapText() {
+    if(text.length() > columnsNo)
+    {
+
+    }
+    else
+        return text;
+}
