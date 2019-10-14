@@ -8,3 +8,8 @@ int TextWrapper::setColumnsNo(int i) {
     columnsNo = i;
     return columnsNo;
 }
+
+std::string TextWrapper::getText(std::string str){
+    text = str;
+    return text;
+}
