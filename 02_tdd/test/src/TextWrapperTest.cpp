@@ -33,3 +33,10 @@ TEST(TextWrapper, TextWrap2){
     wrapper.getText("a");
     EXPECT_EQ("a", wrapper.wrapText());
 }
+
+TEST(TextWrapper, TextWrap3){
+    auto wrapper = TextWrapper{};
+    wrapper.setColumnsNo(1);
+    wrapper.getText("ab");
+    EXPECT_EQ("a\nb", wrapper.wrapText());
+}
