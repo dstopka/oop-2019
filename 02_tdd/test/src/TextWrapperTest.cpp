@@ -5,7 +5,12 @@ TEST(TextWrapper, CreateInstance) {
     auto wrapper = TextWrapper{};
 }
 
-TEST(TextWrapper, HasColumsGetter){
+TEST(TextWrapper, HasColumnsGetter){
     auto wrapper = TextWrapper{};
     EXPECT_EQ(10, wrapper.columns());
+}
+
+TEST(TextWrapper, ColumnsSetter){
+    auto wrapper = TextWrapper{};
+    EXPECT_EQ(4, wrapper.setColumns(4));
 }

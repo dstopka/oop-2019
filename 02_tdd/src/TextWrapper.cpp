@@ -3,3 +3,4 @@
 int TextWrapper::columns() const {
     return 10;
 }
+
