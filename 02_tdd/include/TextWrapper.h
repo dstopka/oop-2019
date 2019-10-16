@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <iostream>
 
 class TextWrapper{
@@ -10,7 +10,7 @@ private:
     std::string text;
 public:
     int columns() const;
-    int setColumnsNo(int i);
+    int setColumnsNo(const int &i);
     std::string getText(std::string str);
     std::string wrapText();
 };

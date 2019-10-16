@@ -4,7 +4,7 @@ int TextWrapper::columns() const {
     return 10;
 }
 
-int TextWrapper::setColumnsNo(int i) {
+int TextWrapper::setColumnsNo(const int &i) {
     columnsNo = i;
     return columnsNo;
 }
@@ -17,9 +17,15 @@ std::string TextWrapper::getText(std::string str){
 std::string TextWrapper::wrapText() {
     if(text.size() > columnsNo)
     {
-        for(int i = columnsNo; i < text.size(); i += columnsNo)
+        for(unsigned long i = columnsNo; i < text.size(); i += columnsNo)
         {
-            text.insert(i++, "\n");
+            if(!text.compare(i, 1, " "))
+            {
+                text.replace(i, 1, "\n");
+                i += columnsNo;
+            }
+            else
+                text.insert(i++, "\n");
         }
         return text;
     }
