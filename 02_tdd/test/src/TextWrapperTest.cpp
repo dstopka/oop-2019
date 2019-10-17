@@ -61,3 +61,10 @@ TEST(TextWrapper, TextWrap6){
     wrapper.getText("ab cd");
     EXPECT_EQ("ab\ncd", wrapper.wrapText());
 }
+
+TEST(TextWrapper, TextWrap7){
+auto wrapper = TextWrapper{};
+wrapper.setColumnsNo(4);
+wrapper.getText("ab cde");
+EXPECT_EQ("ab \ncde", wrapper.wrapText());
+}

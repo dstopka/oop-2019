@@ -14,7 +14,8 @@ std::string TextWrapper::getText(std::string str){
     return text;
 }
 
-std::string TextWrapper::wrapText() {
+std::string TextWrapper::wrapText()
+{
     if(text.size() > columnsNo)
     {
         for(unsigned long i = columnsNo; i < text.size(); i += columnsNo)
@@ -25,7 +26,9 @@ std::string TextWrapper::wrapText() {
                 i += columnsNo;
             }
             else
-                text.insert(i++, "\n");
+            {
+                    text.insert(i++, "\n");
+            }
         }
         return text;
     }
