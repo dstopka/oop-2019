@@ -36,6 +36,10 @@ std::string TextWrapper::wrapText()
                         {
                             text.replace(text.find_last_of(" ", i), 1, "\n");
                         }
+                        else
+                        {
+                            text.insert(i++, "\n");
+                        }
                     }
                     else if(i+columnsNo > text.size())
                     {
@@ -45,7 +49,8 @@ std::string TextWrapper::wrapText()
                     {
                         text.insert(i+columnsNo-1, "\n");
                     }
-                    else {
+                    else
+                    {
                         text.insert(i+columnsNo, "\n");
                     }
                 }
