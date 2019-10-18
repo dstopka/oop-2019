@@ -72,6 +72,13 @@ EXPECT_EQ("ab \ncde", wrapper.wrapText());
 TEST(TextWrapper, TextWrap8){
 auto wrapper = TextWrapper{};
 wrapper.setColumnsNo(4);
+wrapper.getText("ab cdefg");
+EXPECT_EQ("ab \ncdef\ng", wrapper.wrapText());
+}
+
+TEST(TextWrapper, TextWrap9){
+auto wrapper = TextWrapper{};
+wrapper.setColumnsNo(4);
 wrapper.getText("ab cdef ghijk");
 EXPECT_EQ("ab \ncdef\nghij\nk", wrapper.wrapText());
 }

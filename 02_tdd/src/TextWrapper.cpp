@@ -18,6 +18,7 @@ std::string TextWrapper::wrapText()
 {
     if(text.size() > columnsNo)
     {
+
         for(unsigned long i = columnsNo; i < text.size(); i += columnsNo)
         {
             if(!text.compare(i, 1, " "))
@@ -29,14 +30,20 @@ std::string TextWrapper::wrapText()
             {
                 if(text.find_last_of(" ", i) != std::string::npos)
                 {
-                    std::string str = text.substr(text.find_last_of(" ", i), columnsNo + 1);
-                    if(str.back() == ' ' || str.length() <= columnsNo + 1)
+                    std::string str = text.substr(text.find_last_of(" ", i), columnsNo);
+                    if((str.back() == ' ' || str.size() <= columnsNo) && str.find("\n") == std::string::npos)
                     {
                         text.insert(text.find_last_of(" ", i)+1, "\n");
                     }
+                    else
+                    {
+                        text.insert(i++, "\n");
+                    }
                 }
                 else
+                {
                     text.insert(i++, "\n");
+                }
             }
         }
         return text;
