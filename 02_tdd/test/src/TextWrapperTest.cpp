@@ -82,3 +82,10 @@ wrapper.setColumnsNo(4);
 wrapper.getText("ab cdef ghijk");
 EXPECT_EQ("ab\ncdef\nghij\nk", wrapper.wrapText());
 }
+
+TEST(TextWrapper, TextWrap10){
+auto wrapper = TextWrapper{};
+wrapper.setColumnsNo(6);
+wrapper.getText("ab cdefghi jklmn oprs");
+EXPECT_EQ("ab cde\nfghi\njklmn\noprs", wrapper.wrapText());
+}
