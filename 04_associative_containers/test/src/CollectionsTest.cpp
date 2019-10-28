@@ -1,8 +1,6 @@
 #include "TestIncludes.h"
 
 #include <unordered_set>
-#include <stdlib.h>
-#include <time.h>
 
 TEST(SetInt, RemoveElements) {
 
@@ -56,10 +54,7 @@ TEST(SetString, ElementsSortedInReversedAplhabeticalOrderWhenIterating) {
 
     struct Comparator {
         bool operator()(const std::string& lhs, const std::string& rhs) const {
-            if (lhs > rhs)
-                return true;
-            else
-                return false;
+            return lhs > rhs;
         }
     };
 
@@ -137,12 +132,7 @@ TEST(SetValue, CustomTypeAndComparator) {
         bool operator()(const Value& lhs, const Value& rhs) const {
             if(lhs.x < rhs.x)
                 return true;
-            else if(!(lhs.x < rhs.x) && !(rhs.x < lhs.x) || lhs.x > rhs.x)
-            {
-                if(lhs.y < rhs.y)
-                    return true;
-                return false;
-            }
+            else return lhs.y < rhs.y;
         }
     };
 
@@ -260,17 +250,14 @@ TEST(UnorderedSetValue, CustomTypeHashAndComparator) {
 
     struct Hash {
         std::size_t operator()(const Value& val) const noexcept {
-            srand (time(NULL));
-            return rand() % 4 + 1;
+            return 1;
         }
     };
 
     struct Equal {
         bool operator()(const Value& lhs, const Value& rhs) const{
-            if((!(lhs.x < rhs.x) && !(rhs.x < lhs.x)) && (!(lhs.y < rhs.y) && !(rhs.y < lhs.y)) && (!(lhs.z < rhs.z) && !(rhs.z < lhs.z)))
-                return true;
-            else
-                return false;
+            return (!(lhs.x < rhs.x) && !(rhs.x < lhs.x)) && (!(lhs.y < rhs.y) && !(rhs.y < lhs.y)) &&
+                   (!(lhs.z < rhs.z) && !(rhs.z < lhs.z));
         }
     };
 
