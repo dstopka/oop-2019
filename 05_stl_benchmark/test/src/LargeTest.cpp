@@ -109,4 +109,43 @@ TEST(LargeTest, Clear) {
 }
 
 
-// TODO: Add tests for your operators implementation!
+TEST(LargeTest, OperatorSmaller) {
+
+    Large large1{};
+    Large large2{};
+    large1.randomize();
+    std::copy(std::begin(large1.data), std::end(large1.data), std::begin(large2.data));
+    ASSERT_EQ(false, large1 < large2);
+    for(double& x : large1.data)
+        x--;
+    ASSERT_EQ(true, large1 < large2);
+    large1.data[100] += 2;
+    ASSERT_EQ(false, large1 < large2);
+}
+
+TEST(LargeTest, OperatorEqual) {
+
+    Large large1{};
+    Large large2{};
+    large1.randomize();
+    std::copy(std::begin(large1.data), std::end(large1.data), std::begin(large2.data));
+    ASSERT_EQ(true, large1 == large2);
+    large2.data[0]--;
+    ASSERT_EQ(false, large1 == large2);
+    large2.data[0]++;
+    large1.data[255]++;
+    ASSERT_EQ(false, large1 == large2);
+}
+
+
+TEST(LargeTest, Hash) {
+
+    Large large1{};
+    Large large2{};
+    std::hash<Large> hash;
+    large1.randomize();
+    std::copy(std::begin(large1.data), std::end(large1.data), std::begin(large2.data));
+    ASSERT_EQ(true, hash(large1) == hash(large2));
+    large2.randomize();
+    ASSERT_EQ(false, hash(large1) == hash(large2));
+}

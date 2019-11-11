@@ -112,4 +112,38 @@ TEST(SmallTest, Clear) {
 }
 
 
-// TODO: Add tests for your operators implementation!
+TEST(SmallTest, Compare) {
+
+    Small small1{};
+    Small small2{};
+    small1.data[0] = 1;
+    small2.data[0] = 2;
+    ASSERT_EQ(1, small1 < small2);
+    small1.data[0] = 2;
+    small2.data[0] = 1;
+    ASSERT_EQ(0, small1 < small2);
+}
+
+TEST(SmallTest, Equal) {
+
+    Small small1{};
+    Small small2{};
+    small1.data[0] = 1;
+    small2.data[0] = 2;
+    ASSERT_EQ(0, small1 == small2);
+    small2.data[0] = 1;
+    ASSERT_EQ(1, small1 == small2);
+}
+
+TEST(SmallTest, Hash) {
+
+    Small small1{};
+    Small small2{};
+    std::hash<Small> hash;
+    small1.randomize();
+    small2.data[0] = small1.data[0];
+    ASSERT_EQ(true, hash(small1) == hash(small2));
+    small2.randomize();
+    ASSERT_EQ(false, hash(small1) == hash(small2));
+}
+

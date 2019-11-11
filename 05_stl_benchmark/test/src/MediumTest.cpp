@@ -1,5 +1,5 @@
 #include "TestIncludes.h"
-
+#include <iostream>
 #include <vector>
 #include <array>
 #include <deque>
@@ -105,4 +105,43 @@ TEST(MediumTest, Clear) {
     }
 }
 
-// TODO: Add tests for your operators implementation!
+TEST(MediumTest, OperatorSmaller) {
+
+    Medium medium1{};
+    Medium medium2{};
+    medium1.randomize();
+    std::copy(std::begin(medium1.data), std::end(medium1.data), std::begin(medium2.data));
+    ASSERT_EQ(false, medium1 < medium2);
+    for(int& x : medium1.data)
+        x--;
+    ASSERT_EQ(true, medium1 < medium2);
+    medium1.data[100] += 2;
+    ASSERT_EQ(false, medium1 < medium2);
+}
+
+TEST(MediumTest, OperatorEqual) {
+
+    Medium medium1{};
+    Medium medium2{};
+    medium1.randomize();
+    std::copy(std::begin(medium1.data), std::end(medium1.data), std::begin(medium2.data));
+    ASSERT_EQ(true, medium1 == medium2);
+    medium2.data[0]--;
+    ASSERT_EQ(false, medium1 == medium2);
+    medium2.data[0]++;
+    medium1.data[255]++;
+    ASSERT_EQ(false, medium1 == medium2);
+}
+
+
+TEST(MediumTest, Hash) {
+
+    Medium medium1{};
+    Medium medium2{};
+    std::hash<Medium> hash;
+    medium1.randomize();
+    std::copy(std::begin(medium1.data), std::end(medium1.data), std::begin(medium2.data));
+    ASSERT_EQ(true, hash(medium1) == hash(medium2));
+    medium2.randomize();
+    ASSERT_EQ(false, hash(medium1) == hash(medium2));
+}

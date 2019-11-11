@@ -1,7 +1,7 @@
 #pragma once
 
 #include <random>
-
+#include <iostream>
 struct Medium {
 
     constexpr static unsigned SIZE = 256u;
@@ -21,14 +21,24 @@ struct Medium {
     }
 
     bool operator<(const Medium &rhs) const {
-
-        // TODO: Implement me!
-        return false;
+        auto j = std::begin(rhs.data);
+        for(auto i = std::begin(data); i < std::end(data); ++i)
+        {
+            if (*i >= *j)
+                return false;
+            j++;
+        }
+        return true;
     }
 
     bool operator==(const Medium &rhs) const {
-
-        // TODO: Implement me!
+        auto j = std::begin(rhs.data);
+        for(auto i = std::begin(data); i < std::end(data); ++i)
+        {
+            if (*i != *j)
+                return false;
+            j++;
+        }
         return true;
     }
 };
@@ -37,9 +47,13 @@ namespace std {
     template<>
     struct hash<Medium> {
         std::size_t operator()(const Medium &d) const {
-
-            // TODO: Implement me!
-            return 0;
+            long res = 0;
+            int idx = 1;
+            for(auto i = std::begin(d.data); i < std::end(d.data); ++i)
+            {
+                res += *i * idx;
+            }
+            return res;
         }
     };
 }
