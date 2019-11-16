@@ -110,10 +110,10 @@ TEST(MediumTest, OperatorSmaller) {
     Medium medium1{};
     Medium medium2{};
     medium1.randomize();
-    std::copy(std::begin(medium1.data), std::end(medium1.data), std::begin(medium2.data));
+    std::copy(std::begin(medium1.data), std::end(medium1.data), std::begin(medium2.data)); //always same no matter what randomize() returns
     ASSERT_EQ(false, medium1 < medium2);
     for(int& x : medium1.data)
-        x--;
+        x--;                            //makes medium1 smaller no matter what data is
     ASSERT_EQ(true, medium1 < medium2);
     medium1.data[100] += 2;
     ASSERT_EQ(false, medium1 < medium2);
