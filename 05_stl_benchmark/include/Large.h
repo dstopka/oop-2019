@@ -26,7 +26,7 @@ struct Large {
         auto j = std::begin(rhs.data);
         for(auto i = std::begin(data); i < std::end(data); ++i)
         {
-            if (*i >= *j)
+            if (*i > *j)
                 return false;
             j++;
         }
