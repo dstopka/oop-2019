@@ -6,13 +6,9 @@ static void smallMultimapEmpty(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 0; i < size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
@@ -28,13 +24,9 @@ static void smallMultimapSize(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 0; i < size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
@@ -50,13 +42,9 @@ static void smallMultimapMaxSize(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 0; i < size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
@@ -76,14 +64,11 @@ static void smallMultimapClear(State& state)
     for(auto _ : state)
     {
         state.PauseTiming();
-        std::multimap<int, Small> multimap;
-        Small s1;
+        std::multimap<Small, Small> multimap;
         for(int i = 0; i < size; ++i)
-        {
-            s1.randomize();
-            multimap.insert({rand()%size, s1});
-        }
+            multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
         state.ResumeTiming();
+
         multimap.clear();
     }
 
@@ -96,20 +81,16 @@ static void smallMultimapErase(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 0; i < size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size + 1, s1});
-    }
-
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
+    Small s;
     for(auto _ : state)
     {
         state.PauseTiming();
-        multimap.insert({0, s1});
+        multimap.insert( {s = Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
         state.ResumeTiming();
-        multimap.erase(0);
+        multimap.erase(s);
     }
 
     state.SetComplexityN(N);
@@ -121,19 +102,16 @@ static void smallMultimapInsert(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 0; i < size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size + 1, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
+    Small s;
 
     for(auto _ : state)
     {
-        multimap.insert({0, s1});
+        multimap.insert( {s = Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
         state.PauseTiming();
-        multimap.erase(0);
+        multimap.erase(s);
         state.ResumeTiming();
     }
 
@@ -146,18 +124,18 @@ static void smallMultimapSwap(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
+    std::multimap<Small, Small> multimap;
     Small s1;
     for(int i = 0; i < size; ++i)
     {
         s1.randomize();
-        multimap.insert({rand()%size, s1});
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
     }
-    std::multimap<int, Small> multimap2;
+    std::multimap<Small, Small> multimap2;
     for(int i = 0; i < size; ++i)
     {
         s1.randomize();
-        multimap2.insert({rand()%size, s1});
+        multimap2.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
     }
 
     for(auto _ : state)
@@ -174,17 +152,13 @@ static void smallMultimapCount(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 1; i <= size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
-        multimap.count(rand()%size);
+        multimap.count(Small{(char)(rand()%size)});
     }
 
     state.SetComplexityN(N);
@@ -196,17 +170,13 @@ static void smallMultimapFind(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 1; i <= size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
-        multimap.find(rand()%size);
+        multimap.find(Small{(char)(rand()%size)});
     }
 
     state.SetComplexityN(N);
@@ -218,17 +188,13 @@ static void smallMultimapEqualRange(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 1; i <= size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
-        multimap.equal_range(rand()%size);
+        multimap.equal_range(Small{(char)(rand()%size)});
     }
 
     state.SetComplexityN(N);
@@ -240,17 +206,13 @@ static void smallMultimapLowerBound(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 1; i <= size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
-        multimap.lower_bound(rand()%size);
+        multimap.lower_bound(Small{(char)(rand()%size)});
     }
 
     state.SetComplexityN(N);
@@ -262,17 +224,13 @@ static void smallMultimapUpperBound(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::multimap<int, Small> multimap;
-    Small s1;
+    std::multimap<Small, Small> multimap;
     for(int i = 1; i <= size; ++i)
-    {
-        s1.randomize();
-        multimap.insert({rand()%size, s1});
-    }
+        multimap.insert({Small{(char)(rand()%size)}, Small{(char)(rand()%size)}});
 
     for(auto _ : state)
     {
-        multimap.upper_bound(rand()%size);
+        multimap.upper_bound(Small{(char)(rand()%size)});
     }
 
     state.SetComplexityN(N);

@@ -119,10 +119,16 @@ static void smallDequeShrinkToFit(State& state)
 {
     auto N = state.range(0);
     auto size = (std::size_t)N;
-    std::deque<Small> deque(size);
 
     for(auto _ : state)
     {
+        state.PauseTiming();
+        std::deque<Small> deque(size);
+        deque.push_front(Small{(char)(rand()%size)});
+        deque.resize(size);
+        deque.clear();
+        state.ResumeTiming();
+
         deque.shrink_to_fit();
     }
 
