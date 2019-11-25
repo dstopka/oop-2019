@@ -1,5 +1,7 @@
 #include "Small.h"
 #include "BenchIncludes.h"
+#include <deque>
+#include <map>
 
 static void smallLessOperator(State& state)
 {
@@ -13,10 +15,9 @@ static void smallLessOperator(State& state)
         auto result = small1 < small2;
         DoNotOptimize(result);
     }
-    state.SetComplexityN(state.range(0));
 }
 
-BENCHMARK(smallLessOperator)->Range(1,1)->Complexity();
+BENCHMARK(smallLessOperator);
 
 static void smallEqualOperator(State& state)
 {
@@ -30,10 +31,10 @@ static void smallEqualOperator(State& state)
         auto result = small1 == small2;
         DoNotOptimize(result);
     }
-    state.SetComplexityN(state.range(0));
+
 }
 
-BENCHMARK(smallEqualOperator)->Range(1,1)->Complexity();
+BENCHMARK(smallEqualOperator);
 
 static void smallHash(State& state)
 {
@@ -46,7 +47,7 @@ static void smallHash(State& state)
         auto result = hash(small1);
         DoNotOptimize(result);
     }
-    state.SetComplexityN(state.range(0));
 }
 
-BENCHMARK(smallHash)->Range(1,1)->Complexity();
+BENCHMARK(smallHash);
+
