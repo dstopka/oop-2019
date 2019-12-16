@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     acceleration = new Acceleration(this);
 
     connect(displacement, SIGNAL(changed(double)), speed, SLOT(onChange(double)));
-    connect(speed, SIGNAL(changed(double)), acceleration, SLOT(onChange(double)));
+    connect(displacement, SIGNAL(changed(double)), acceleration, SLOT(onChange(double)));
 
     ui->setupUi(this);
 

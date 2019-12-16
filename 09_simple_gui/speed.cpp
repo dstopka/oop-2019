@@ -17,6 +17,7 @@ void Speed::onChange(double v)
         {
             secondValue = v;
             hasSecondValue = true;
+            emit changed(secondValue - firstValue);
         }
         else
         {

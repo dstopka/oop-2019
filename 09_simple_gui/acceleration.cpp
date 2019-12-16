@@ -22,6 +22,7 @@ void Acceleration::onChange(double v)
         {
             thirdValue = v;
             hasThirdValue = true;
+            emit changed((thirdValue - secondValue) - (secondValue - firstValue));
         }
         else
         {
