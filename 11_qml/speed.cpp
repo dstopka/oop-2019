@@ -6,7 +6,7 @@ Speed::Speed(QObject *parent) : QObject(parent)
 
 }
 
-void Speed::setSpeed(double v)
+void Speed::setValue(float v)
 {
     if (!hasFirstValue)
         {
@@ -17,18 +17,18 @@ void Speed::setSpeed(double v)
         {
             secondValue = v;
             hasSecondValue = true;
+            emit speedChanged(getValue());
         }
         else
         {
             firstValue = secondValue;
             secondValue = v;
-            value = secondValue - firstValue;
-            emit changed(getSpeed());
+            emit speedChanged(getValue());
         }
 
 }
 
-float Speed::getSpeed()
+float Speed::getValue() const
 {
-    return value;
+    return secondValue - firstValue;
 }

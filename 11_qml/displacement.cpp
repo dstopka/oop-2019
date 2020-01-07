@@ -6,14 +6,13 @@ Displacement::Displacement(QObject *parent) : QObject(parent)
 
 }
 
-void Displacement::setDisplacement(double v)
+void Displacement::setDisplacement(float v)
 {
     value = v;
-    qDebug() << getDisplacement();
     emit displacementChanged(getDisplacement());
 }
 
-double Displacement::getDisplacement() const
+float Displacement::getDisplacement() const
 {
     return value;
 }

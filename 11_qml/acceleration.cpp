@@ -6,7 +6,7 @@ Acceleration::Acceleration(QObject *parent) : QObject(parent)
 
 }
 
-void Acceleration::setAcc(double v)
+void Acceleration::setValue(float v)
 {
     if (!hasFirstValue)
         {
@@ -17,24 +17,18 @@ void Acceleration::setAcc(double v)
         {
             secondValue = v;
             hasSecondValue = true;
-        }
-        else if (!hasThirdValue)
-        {
-            thirdValue = v;
-            hasThirdValue = true;
+            emit accelerationChanged(getValue());
         }
         else
         {
             firstValue = secondValue;
-            secondValue = thirdValue;
-            thirdValue = v;
-            value = (thirdValue - secondValue) - (secondValue - firstValue);
-            emit changed(getAcc());
+            secondValue = v;
+            emit accelerationChanged(getValue());
         }
 }
 
-float Acceleration::getAcc()
+float Acceleration::getValue()
 {
-      return value;
+      return secondValue - firstValue;
 }
 

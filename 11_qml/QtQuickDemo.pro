@@ -14,7 +14,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    demo.cpp \
     acceleration.cpp \
     displacement.cpp \
     speed.cpp
@@ -33,7 +32,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    demo.h \
     acceleration.h \
     displacement.h \
     speed.h

@@ -7,23 +7,23 @@ class Displacement : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(double value
+    Q_PROPERTY(float value
                READ getDisplacement
                WRITE setDisplacement
                NOTIFY displacementChanged)
 public:
     explicit Displacement(QObject *parent = nullptr);
 
-   Q_INVOKABLE void setDisplacement(double v);
-   double getDisplacement() const;
+   Q_INVOKABLE void setDisplacement(float v);
+   float getDisplacement() const;
 
 signals:
-    void displacementChanged(double v);
+    void displacementChanged(float v);
 
 public slots:
 
 private:
-    double value;
+    float value;
 };
 
 #endif // DISPLACEMENT_H
